@@ -1,23 +1,20 @@
 import { Dimensions, Text, View,FlatList,StyleSheet} from 'react-native';
+import CadeCircular from '../src/CadeCircular';
 
 function Carrousel() {
     const width = Dimensions.get('window').width;
+    const data = new CadeCircular().nomes.map((nome, index) => {
+        return { key: nome, value: index.toString() };
+    })
     return (
         <View style={styles.Container}>
             <FlatList
-                    data={[
-                {key: 'PONTO1'},
-                {key: 'PONTO2'},
-                {key: 'PONTO3'},
-                {key: 'PONTO4'},
-                {key: 'PONTO5'},
-                {key: 'PONTO6'},
-                {key: 'PONTO7'},
-            
-                ]}
+                    data={data}
                 renderItem={({item}) => {
+
                     return (
                         <View style={styles.Element}>
+                            <View style={styles.Ball}></View>
                             <Text style={{ textAlign: 'center', fontSize: 30 }}>
                                 {item.key}
                             </Text>
@@ -31,25 +28,36 @@ function Carrousel() {
     );
 }
 const styles = StyleSheet.create({
+    Ball:{
+        width: 50,
+        height: 50,
+        backgroundColor: 'blue',
+
+        borderRadius: 50,
+    },
     Container:{
         display: 'flex',
-        width: '100%',
-        height: '100%',
-        justifyContent: 'flex-start',
+        width: '90%',
+        borderWidth: 5,
+        borderRadius: 10,
+        borderColor: 'black',
+        height: "auto",
+        justifyContent: 'center',
         gap: 10,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         overflow: 'scroll',
+        flexDirection: 'column',
     },
     Element:{
-        backgroundColor: 'red',
         display: 'flex',
-        width: 500,
-        borderWidth: 5,
+        width: 300,
+        borderWidth: 0,
+        borderRadius: 0,
         borderColor: 'black',
         height: 200,
-        
-        marginTop: 50,
-        justifyContent: 'flex-start',
+        borderRightWidth: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
         gap: 10,
     }
   });

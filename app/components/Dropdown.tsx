@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-  import { StyleSheet } from 'react-native';
-  import { Dropdown } from 'react-native-element-dropdown';
-  import AntDesign from '@expo/vector-icons/AntDesign';
-
-  const data = [
-    { label: 'Letras', value: '1' },
-    { label: 'Ru', value: '2' },
-    { label: 'Direito', value: '3' },
-    { label: 'Fac. Educação', value: '4' },
-    { label: 'Faefid', value: '5' },
-    { label: 'Odonto', value: '6' },
-    { label: 'HU', value: '7' },
-  ];
+import { StyleSheet } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import '../src/CadeCircular'
+import CadeCircular from '../src/CadeCircular';
+  const data =    new CadeCircular().nomes.map((nome, index) => {
+    return { label: nome, value: index.toString() };
+  });
 
   const DropdownComponent = () => {
     const [value, setValue] = useState(null);
@@ -28,7 +23,7 @@ import React, { useState } from 'react';
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder="Select item"
+        placeholder={data[0].label}
         searchPlaceholder="Search..."
         value={value}
         onChange={item => {
@@ -45,6 +40,7 @@ import React, { useState } from 'react';
 
   const styles = StyleSheet.create({
     dropdown: {
+      width: 200,
       height: 50,
       borderBottomColor: 'gray',
       borderBottomWidth: 0.5,
