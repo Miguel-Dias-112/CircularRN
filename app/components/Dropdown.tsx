@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import '../src/CadeCircular'
-import CadeCircular from '../src/CadeCircular';
-  const data =    new CadeCircular().nomes.map((nome, index) => {
+import CadeCircular2 from '../src/CadeCircular';
+  const data =     CadeCircular2.nomes.map((nome, index) => {
     return { label: nome, value: index.toString() };
   });
 
@@ -27,7 +27,7 @@ import CadeCircular from '../src/CadeCircular';
         searchPlaceholder="Search..."
         value={value}
         onChange={item => {
-         // setValue(item.value);
+          CadeCircular2.yourPos=parseInt(item.value);
         }}
         renderLeftIcon={() => (
           <AntDesign style={styles.icon} color="black" name="Safety" size={20} />

@@ -1,25 +1,41 @@
-import { Dimensions, Text, View,FlatList,StyleSheet} from 'react-native';
+import { Dimensions, Text, View,FlatList,StyleSheet,AppState} from 'react-native';
 import CadeCircular from '../src/CadeCircular';
-
+import { useState } from 'react';
+import CadeCircular2 from '../src/CadeCircular';
 function Carrousel() {
-    const width = Dimensions.get('window').width;
-    const data = new CadeCircular().nomes.map((nome, index) => {
+    const data = CadeCircular2.nomes.map((nome, index) => {
         return { key: nome, value: index.toString() };
     })
+    
+    const [Postion, setPostion] = useState(CadeCircular2.yourPos);
+    setInterval(() => {
+        setPostion(CadeCircular2.yourPos);
+    }, 100);
     return (
         <View style={styles.Container}>
             <FlatList
-                    data={data}
+                data={data}
                 renderItem={({item}) => {
-
-                    return (
-                        <View style={styles.Element}>
-                            <View style={styles.Ball}></View>
-                            <Text style={{ textAlign: 'center', fontSize: 30 }}>
-                                {item.key}
-                            </Text>
-                        </View>
-                    );
+                    if(Postion==parseInt(item.value)){
+                        return (
+                            <View style={styles.Element}>
+                                <View style={styles.Ball}></View>
+                                <Text style={{ textAlign: 'center', fontSize: 30 }}>
+                                    {item.key}
+                                </Text>
+                            </View>
+                        );
+                    }
+                    else {
+                        return (
+                            <View style={styles.Element}>
+                                <View style={styles.BlankBall}></View>
+                                <Text style={{ textAlign: 'center', fontSize: 30 }}>
+                                    {item.key}
+                                </Text>
+                            </View>
+                        );
+                    }
                 }}
                 horizontal={true}
                 >
@@ -33,6 +49,12 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: 'blue',
 
+    },
+    BlankBall:{
+        width: 50,
+        height: 50,
+        display: 'none',
+        backgroundColor: 'none',
         borderRadius: 50,
     },
     Container:{
