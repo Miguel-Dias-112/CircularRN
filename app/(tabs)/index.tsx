@@ -1,10 +1,9 @@
-import { Image, TextInput,StyleSheet, Text,View, Button} from 'react-native';
+import { Image, TextInput,StyleSheet, Text,View, Pressable} from 'react-native';
 
 
 export default function HomeScreen() {
   return (
     <View style={styles.View}>
-      <Text style={styles.Tittle}>Login Screen</Text>
       <View style={styles.ViewInput}>
         <Text style={styles.Text}>Email:</Text>
         <TextInput
@@ -20,19 +19,11 @@ export default function HomeScreen() {
         />
       </View>
       <View style={styles.ViewButtons}>
-        <Button
-        title="Login"
-        color="black"
-        accessibilityLabel="Learn more about this purple button">
-          
-        </Button>
-        <Button  
-        title="olhadiha"
-        color="black"
-        accessibilityLabel="Learn more about this purple button">
-          
-        </Button>
+          <Pressable style={styles.Button} onPress={()=>{}}>
+            <Text>Login</Text>
+          </Pressable>
       </View>
+      <image></image>
       
     </View>
   );
@@ -43,8 +34,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'White',
     display: 'flex',
     height: '100%',
-    justifyContent: 'center',
-    gap: "10%",
+    marginTop: 50,
+    justifyContent: 'flex-start',
+    gap: 10,
     alignItems: 'center',
   },
   ViewInput:{
@@ -55,11 +47,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Tittle:{
-    backgroundColor: 'yellow',
     width:"80%",
     height:50,
     display: 'flex',
     justifyContent: 'center',
+    fontSize: 30,
     alignItems: 'center',
   },
   Text:{
@@ -72,16 +64,20 @@ const styles = StyleSheet.create({
   Button:{
     backgroundColor: 'white',
     width:"100%",
-    height:30,
+    height:60,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
   },
   ViewButtons:{
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
+    width:"60%",
   },
   Input:{
     width:"100%",
@@ -89,7 +85,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 5,
     borderColor: 'black',
     borderWidth: 2,
     padding: 5,
