@@ -14,7 +14,11 @@ export default function x() {
         <Text style={styles.Tittle}>Cadê o Circular</Text>
         <View style={styles.InformationsCtn}>
            <View style={styles.InformationCtn}>
-              <Text style={styles.TextInfo}>Tempo estimado</Text>
+              <Text style={styles.TextInfo}>Previsão de chegada</Text>
+              <Text  style={styles.Text}>xx:xx:xx</Text>
+            </View>
+            <View style={styles.InformationCtn}>
+              <Text style={styles.TextInfo}>Tempo Restante</Text>
               <Text  style={styles.Text}>xx:xx:xx</Text>
             </View>
             <View style={styles.InformationCtn}>

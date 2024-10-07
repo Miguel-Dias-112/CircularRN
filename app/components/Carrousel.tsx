@@ -1,19 +1,27 @@
 import { Dimensions, Text, View,FlatList,StyleSheet,AppState} from 'react-native';
 import CadeCircular from '../src/CadeCircular';
-import { useState } from 'react';
+import { useState ,useRef} from 'react';
 import CadeCircular2 from '../src/CadeCircular';
 function Carrousel() {
     const data = CadeCircular2.nomes.map((nome, index) => {
         return { key: nome, value: index.toString() };
     })
-    
+    const flatListRef = useRef<FlatList<{ key: string; value: string }> | null>(null);
     const [Postion, setPostion] = useState(CadeCircular2.yourPos);
+
+    let scrollOnce= true   ;
     setInterval(() => {
         setPostion(CadeCircular2.yourPos);
+        if(scrollOnce){
+            flatListRef.current?.scrollToOffset({ animated: true, offset: Postion * 300 });
+            scrollOnce=false;
+            return;
+        }
     }, 100);
     return (
         <View style={styles.Container}>
             <FlatList
+                ref={flatListRef}
                 data={data}
                 renderItem={({item}) => {
                     if(Postion==parseInt(item.value)){
@@ -60,9 +68,9 @@ const styles = StyleSheet.create({
     Container:{
         display: 'flex',
         width: '90%',
-        borderWidth: 5,
+        borderWidth: 9,
         borderRadius: 10,
-        borderColor: 'black',
+        borderColor: 'orange',
         height: "auto",
         justifyContent: 'center',
         gap: 10,
